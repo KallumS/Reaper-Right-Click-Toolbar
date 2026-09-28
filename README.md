@@ -89,7 +89,13 @@ pops up where your mouse is.
    button you want to use.
 
 Now press that shortcut to open the toolbox at the mouse, then click a tool.
-Press the shortcut again to close it.
+The toolbar **closes by itself** once you've picked a tool, like Cubase's
+toolbox. To close it without picking anything, press the shortcut again.
+
+The toolbox works out which floating toolbar(s) you put its buttons on, so it
+only ever closes those. If you'd rather keep the toolbar open (for example,
+if you dock it permanently), open the tool menu (**Cubase Toolbox - Show
+tool menu**) and untick **Close floating toolbar after picking a tool**.
 
 You can also add that "open toolbar at mouse cursor" action to the
 right-click menu (see Way 1). It takes one extra click, but you don't need a
