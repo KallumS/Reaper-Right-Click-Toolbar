@@ -1,4 +1,4 @@
-# Cubase Toolbox for REAPER
+# Right-Click Toolbox for REAPER
 
 A set of ReaScripts that give REAPER a **Cubase-style toolbox**. Right-click
 (or press a shortcut to open a toolbar at the mouse) and pick a tool, such as
@@ -27,11 +27,11 @@ Selection** puts all of them back, even if you had customised them.
 ## Installing
 
 1. In REAPER choose **Options > Show REAPER resource path in explorer/finder**.
-2. Open the **Scripts** folder there and copy the whole **`Cubase Toolbox`**
+2. Open the **Scripts** folder there and copy the whole **`Right-Click Toolbox`**
    folder into it.
 3. In REAPER open the **Actions** window (press `?`), click
    **New action… > Load ReaScript…** and choose
-   **`Cubase Toolbox - Install (run once).lua`**.
+   **`Right-Click Toolbox - Install (run once).lua`**.
 4. Select it in the list and click **Run**. This adds every tool to REAPER's
    action list for the main window and the MIDI editor.
 
@@ -50,14 +50,14 @@ There are two main ways to pick a tool. You can set up either one, or both.
 1. **Options > Customize menus/toolbars…**
 2. In the drop-down at the top-left choose **Ruler/arrange context**. This is
    the menu you get when you right-click empty space in the arrange view.
-3. Click **Add… > Action…**, type `Cubase Toolbox - Tool` in the filter box,
+3. Click **Add… > Action…**, type `Right-Click Toolbox - Tool` in the filter box,
    and add the tools you want.
-   *Shorter option:* add only **Cubase Toolbox - Show tool menu**. That adds
+   *Shorter option:* add only **Right-Click Toolbox - Show tool menu**. That adds
    one entry which opens the full toolbox at the mouse, with the modes already
    in sub-menus.
 4. *Optional, for modes:* instead of a plain tool entry, add a sub-menu
    (**Add… > Submenu**) named after the tool, e.g. "Split", and put that
-   tool's `Cubase Toolbox - Mode …` actions inside it. See
+   tool's `Right-Click Toolbox - Mode …` actions inside it. See
    [Tool modes](#tool-modes).
 5. Drag the new entries to the top of the list so they sit first, like in
    Cubase. Tick **Include default menu as submenu** so REAPER's normal
@@ -76,7 +76,7 @@ pops up where your mouse is.
 1. **Options > Customize menus/toolbars…**
 2. In the drop-down at the top-left choose **Floating toolbar 1**. Pick
    another number if you already use toolbar 1.
-3. Click **Add… > Action…**, type `Cubase Toolbox - Tool` in the filter box,
+3. Click **Add… > Action…**, type `Right-Click Toolbox - Tool` in the filter box,
    and add all the tools.
 4. Give each button a label: select it, then use the icon/text options in the
    window (for example **Text icon…**) to type a short name like `Select`,
@@ -101,7 +101,7 @@ toolbox. To close it without picking anything, press the shortcut again.
 
 The toolbox works out which floating toolbar(s) you put its buttons on, so it
 only ever closes those. If you'd rather keep the toolbar open (for example,
-if you dock it permanently), open the tool menu (**Cubase Toolbox - Show
+if you dock it permanently), open the tool menu (**Right-Click Toolbox - Show
 tool menu**) and untick **Close floating toolbar after picking a tool**.
 
 You can also add that "open toolbar at mouse cursor" action to the
@@ -111,7 +111,7 @@ shortcut.
 ### Extras
 
 - **Keyboard shortcut per tool.** In the Actions window, select any
-  `Cubase Toolbox - Tool …` action and click **Add…** under Shortcuts. Cubase
+  `Right-Click Toolbox - Tool …` action and click **Add…** under Shortcuts. Cubase
   uses the number keys 1–9, but REAPER already uses some of them, so pick keys
   you don't use.
 - **Always-visible buttons.** You can put your favourite tools on the main
@@ -159,7 +159,7 @@ used last, so picking the tool again gives you that mode.
   small menu of its modes pops up at the mouse.
 - **Show tool menu:** each tool with modes has a sub-menu listing them.
 - **Right-click menu or shortcuts:** every mode also has its own action,
-  named `Cubase Toolbox - Mode …`. Put them in a sub-menu, on toolbar buttons,
+  named `Right-Click Toolbox - Mode …`. Put them in a sub-menu, on toolbar buttons,
   or on keyboard shortcuts. They light up while that mode is active.
 
 | Tool | Modes |
@@ -195,7 +195,7 @@ shape*. Your own settings are put back when you pick another tool.
 
 ## If something isn't right
 
-- Run **Cubase Toolbox - Show tool menu** (from the right-click menu, or the
+- Run **Right-Click Toolbox - Show tool menu** (from the right-click menu, or the
   Actions window) and choose **Troubleshooting report**. It
   prints the toolbox's current state to REAPER's console window. If you ask
   for help, copy that text into your message.
@@ -220,15 +220,15 @@ shape*. Your own settings are put back when you pick another tool.
 ## Files
 
 ```
-Cubase Toolbox/
-  Cubase Toolbox - Install (run once).lua   adds everything to the action list
-  Cubase Toolbox - Show tool menu.lua       the pop-up toolbox
-  Cubase Toolbox - Tool 01 … 13 ….lua       one action per tool (for menus, shortcuts, toolbars)
-  Modes/Cubase Toolbox - Mode ….lua         one action per tool mode
-  lib/CubaseToolbox_core.lua                the engine: tool definitions, backup/restore
-  lib/Cubase Toolbox helper - ….lua         small click actions (erase, mute, glue, zoom, split, select, play, tempo)
+Right-Click Toolbox/
+  Right-Click Toolbox - Install (run once).lua   adds everything to the action list
+  Right-Click Toolbox - Show tool menu.lua       the pop-up toolbox
+  Right-Click Toolbox - Tool 01 … 13 ….lua       one action per tool (for menus, shortcuts, toolbars)
+  Modes/Right-Click Toolbox - Mode ….lua         one action per tool mode
+  lib/RightClickToolbox_core.lua                the engine: tool definitions, backup/restore
+  lib/Right-Click Toolbox helper - ….lua         small click actions (erase, mute, glue, zoom, split, select, play, tempo)
 ```
 
-The tools are defined in the `M.TOOLS` table in `lib/CubaseToolbox_core.lua`.
+The tools are defined in the `M.TOOLS` table in `lib/RightClickToolbox_core.lua`.
 Each tool (and each of its modes) lists the mouse settings it changes, so you
 can adjust a tool there.
