@@ -1,8 +1,10 @@
 -- @description Cubase Toolbox - Line tool
 -- @about
 --   Switches the mouse to the Cubase-style "Line" tool.
---   Put this on a toolbar button or a keyboard shortcut; the button lights up
---   while the tool is active. If it's on a floating toolbar, that toolbar
+--   Modes: Linear, Curve, S-Curve (Slow Start/End), Exponential (Fast Start), Logarithmic (Fast End), Steps (Square).
+--   Click this button again while the tool is active to pick a mode.
+--   Put this on a toolbar button, a menu or a keyboard shortcut; it lights
+--   up while the tool is active. If it's on a floating toolbar, that toolbar
 --   closes once you've picked the tool (switch this off in the tool menu).
 
 if reaper.set_action_options then reaper.set_action_options(3) end

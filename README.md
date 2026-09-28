@@ -53,13 +53,18 @@ There are two main ways to pick a tool. You can set up either one, or both.
 3. Click **Add… > Action…**, type `Cubase Toolbox - Tool` in the filter box,
    and add the tools you want.
    *Shorter option:* add only **Cubase Toolbox - Show tool menu**. That adds
-   one entry which opens the full toolbox at the mouse.
-4. Drag the new entries to the top of the list so they sit first, like in
+   one entry which opens the full toolbox at the mouse, with the modes already
+   in sub-menus.
+4. *Optional, for modes:* instead of a plain tool entry, add a sub-menu
+   (**Add… > Submenu**) named after the tool, e.g. "Split", and put that
+   tool's `Cubase Toolbox - Mode …` actions inside it. See
+   [Tool modes](#tool-modes).
+5. Drag the new entries to the top of the list so they sit first, like in
    Cubase. Tick **Include default menu as submenu** so REAPER's normal
    right-click commands stay available.
-5. Repeat for **Media item context** (right-clicking an item). In the MIDI
+6. Repeat for **Media item context** (right-clicking an item). In the MIDI
    editor, do the same for its menus, which have names starting with "MIDI".
-6. Click **Save**.
+7. Click **Save**.
 
 ### Way 2: floating toolbar at the mouse
 
@@ -89,6 +94,8 @@ pops up where your mouse is.
    button you want to use.
 
 Now press that shortcut to open the toolbox at the mouse, then click a tool.
+To change a tool's mode, click its button again while it's lit. See
+[Tool modes](#tool-modes).
 The toolbar **closes by itself** once you've picked a tool, like Cubase's
 toolbox. To close it without picking anything, press the shortcut again.
 
@@ -117,17 +124,16 @@ tool you last used is still active, though.
 
 | Cubase tool | What it does in REAPER | Notes |
 |---|---|---|
-| **Object Selection** | REAPER's normal behaviour: select, move, resize, copy and trim | Puts back all your original settings |
-| **Sizing Applies Time Stretch** | Like Object Selection, but dragging an audio item's edge time-stretches it | |
+| **Object Selection** | REAPER's normal behaviour: select, move, resize, copy and trim | Puts back all your original settings. Has modes |
 | **Range Selection** | Drag to select a time range across tracks (REAPER's *razor edit*) | Best in REAPER 7 |
-| **Split (Scissors)** | Click an item to split it at the mouse. In the MIDI editor, click a note to split it | |
+| **Split (Scissors)** | Click an item to split it at the mouse. In the MIDI editor, click a note to split it. **Alt+click** cuts the item into repeated pieces of the length you clicked | Has modes |
 | **Glue** | Click an item to join it to the next item on the same track | See the glue note below |
 | **Eraser** | Click to delete items, MIDI notes, CC events and automation points. Drag to erase notes in the MIDI editor | |
-| **Zoom** | Drag a box to zoom into it. Click to zoom in, **Alt+click** to zoom out, centred on the mouse | |
+| **Zoom** | Drag a box to zoom into it. Click to zoom in, **Alt+click** to zoom out, centred on the mouse | Has modes |
 | **Mute** | Click items or MIDI notes to mute or unmute them. Clicking a selected item mutes every selected item | |
-| **Draw (Pencil)** | Drag on an empty track to draw a MIDI item. Draw automation freehand. Draw MIDI notes and CC data | |
-| **Line** | MIDI editor: draw straight ramps of CC and velocity, or a straight line of notes. Automation: click to add points joined by straight lines | Only straight lines, no curves |
-| **Play / Scrub** | Drag to scrub audio like tape. In the MIDI editor, drag to hear notes | Needs REAPER 7 |
+| **Draw (Pencil)** | Drag on an empty track to draw a MIDI item. Draw automation freehand. Draw MIDI notes and CC data | Has modes |
+| **Line** | MIDI editor: draw ramps of CC and velocity, or a straight line of notes. Automation: click to add points joined by lines. The mode picks the curve shape | Has modes |
+| **Play / Scrub** | Drag to scrub audio like tape. In the MIDI editor, drag to hear notes | Has modes. Scrub and Jog need REAPER 7 |
 | **Hand** | Drag to scroll around the project without changing the zoom | Needs REAPER 7 |
 | **Drumstick** | MIDI editor: click or drag to paint hits, click an existing hit to remove it | |
 | **Time Warp** | Click to add a tempo marker at the nearest grid line. Drag tempo markers in the ruler to line the grid up with your audio; the tempo before the marker adjusts to fit | See the time warp note below |
@@ -142,6 +148,34 @@ instead: they move together, and nothing is bounced.
 timebase to *Time*. For items, use *Item properties > Timebase*. For the whole
 project, use *Project settings > Timebase*.
 
+## Tool modes
+
+Like Cubase, some tools have extra modes. Each tool remembers the mode you
+used last, so picking the tool again gives you that mode.
+
+**How to change mode:**
+
+- **Floating toolbar:** click the tool's button while it's already lit, and a
+  small menu of its modes pops up at the mouse.
+- **Show tool menu:** each tool with modes has a sub-menu listing them.
+- **Right-click menu or shortcuts:** every mode also has its own action,
+  named `Cubase Toolbox - Mode …`. Put them in a sub-menu, on toolbar buttons,
+  or on keyboard shortcuts. They light up while that mode is active.
+
+| Tool | Modes |
+|---|---|
+| **Object Selection** | **Normal**: REAPER's usual behaviour.<br>**Sizing Applies Time Stretch**: dragging an item edge time-stretches it.<br>**Click Adds/Removes From Selection**: clicking an item adds it to, or removes it from, the selection.<br>**Select Events Under Cursor**: click anywhere to select every item at that point, on all tracks.<br>**Select Objects Behind**: click overlapping items to select the one underneath; click again to go one further down. |
+| **Split (Scissors)** | **Split At Mouse**: split the clicked item.<br>**Split All Selected Items**: split the clicked item and every selected item at that point.<br>In both modes, **Alt+click** cuts the item into repeated pieces. |
+| **Zoom** | **Zoom To Dragged Selection**: drag a box to zoom into it.<br>**Zoom Horizontally**: drag left/right to zoom in and out.<br>**Zoom Vertically**: click to make tracks taller, Alt+click to make them shorter. |
+| **Draw (Pencil)** | **Free Draw**: draw automation and MIDI CC freehand.<br>**Line**: draw straight lines of MIDI CC; on automation, click to add points joined by straight lines. |
+| **Line** | Picks the shape of new ramps in MIDI CC lanes and automation: **Linear**, **Curve** (bezier, which you can bend afterwards), **S-Curve** (slow start and end, like a sine), **Exponential** (fast start), **Logarithmic** (fast end) and **Steps** (square). |
+| **Play / Scrub** | **Scrub**: drag to scrub audio like tape.<br>**Jog**: drag to play forwards or backwards at your own speed.<br>**Play From Click**: click to play from that point, click again to stop.<br>In every mode, dragging in the MIDI editor plays the notes. |
+
+**About the Line shapes:** each shape changes two REAPER preferences while
+the mode is active: *Preferences > MIDI editor > default shape for CC
+segments*, and *Preferences > Track/send defaults > default envelope point
+shape*. Your own settings are put back when you pick another tool.
+
 ## Things that work differently from Cubase
 
 - **The mouse pointer doesn't change shape.** REAPER doesn't let scripts do
@@ -150,7 +184,13 @@ project, use *Project settings > Timebase*.
 - **The Eraser can't wipe out several items with one drag.** Click each item.
   In the MIDI editor, dragging does erase several notes.
 - **Holding Shift, Ctrl or Alt keeps REAPER's normal behaviour** in every
-  tool, except Alt+click with the Zoom tool.
+  tool, except Alt+click with the Zoom and Split tools.
+- **The Pencil and Line tools draw only REAPER's shapes.** Cubase's
+  parabola, sine, triangle, square and saw *patterns* aren't available. The
+  Line tool's modes change the curve between points instead.
+- **The Play tool can't play only while the mouse button is held.** Use
+  **Play From Click**: click to play, click again to stop. Hovering over MIDI
+  notes doesn't play them. Drag over them instead.
 - **Switching tools isn't an undo step.** Undo only affects your edits.
 
 ## If something isn't right
@@ -169,8 +209,10 @@ project, use *Project settings > Timebase*.
 
 ## Requirements
 
-- REAPER 6 or newer. **REAPER 7 or newer** is needed for Hand and
-  Play/Scrub, and is recommended for Range Selection.
+- REAPER 6 or newer. **REAPER 7 or newer** is needed for Hand and the Scrub
+  and Jog modes of Play/Scrub, and is recommended for Range Selection and the
+  Line tool's shapes. If your REAPER is missing something, the console says
+  exactly what.
 - No extensions are needed. With the optional
   [js_ReaScriptAPI](https://forum.cockos.com/showthread.php?t=212174)
   extension, the pop-up menu opens a little more smoothly on Windows.
@@ -181,10 +223,12 @@ project, use *Project settings > Timebase*.
 Cubase Toolbox/
   Cubase Toolbox - Install (run once).lua   adds everything to the action list
   Cubase Toolbox - Show tool menu.lua       the pop-up toolbox
-  Cubase Toolbox - Tool 01 … 14 ….lua       one action per tool (for menus, shortcuts, toolbars)
+  Cubase Toolbox - Tool 01 … 13 ….lua       one action per tool (for menus, shortcuts, toolbars)
+  Modes/Cubase Toolbox - Mode ….lua         one action per tool mode
   lib/CubaseToolbox_core.lua                the engine: tool definitions, backup/restore
-  lib/Cubase Toolbox helper - ….lua         small click actions (erase, mute, glue, zoom, tempo)
+  lib/Cubase Toolbox helper - ….lua         small click actions (erase, mute, glue, zoom, split, select, play, tempo)
 ```
 
 The tools are defined in the `M.TOOLS` table in `lib/CubaseToolbox_core.lua`.
-Each tool lists the mouse settings it changes, so you can adjust a tool there.
+Each tool (and each of its modes) lists the mouse settings it changes, so you
+can adjust a tool there.
