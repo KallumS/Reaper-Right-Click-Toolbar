@@ -1,8 +1,9 @@
 # Cubase Toolbox for REAPER
 
-A set of ReaScripts that give REAPER a **Cubase-style right-click toolbox**:
-right-click, pick a tool (Draw, Eraser, Split, Glue, Mute, Zoom…), and your
-left mouse button now works like that Cubase tool until you pick another one.
+A set of ReaScripts that give REAPER a **Cubase-style toolbox**. Right-click
+(or press a shortcut to open a toolbar at the mouse) and pick a tool, such as
+Draw, Eraser, Split, Glue, Mute or Zoom. Your left mouse button then works
+like that Cubase tool until you pick another one.
 
 ## How it works
 
@@ -34,14 +35,25 @@ Selection** puts all of them back, even if you had customised them.
 4. Select it in the list and click **Run**. This adds every tool to REAPER's
    action list for the main window and the MIDI editor.
 
-### Making it appear on right-click
+## Choosing a tool
+
+There are two main ways to pick a tool. You can set up either one, or both.
+
+| | Right-click menu | Floating toolbar at the mouse |
+|---|---|---|
+| **What you see** | A list of tool names | A panel of buttons with icons or short labels |
+| **How you open it** | Right-click | A shortcut you choose (a key or a mouse button) |
+| **Active tool shown by** | A tick next to its name | Its button lights up |
+
+### Way 1: right-click menu
 
 1. **Options > Customize menus/toolbars…**
 2. In the drop-down at the top-left choose **Ruler/arrange context**. This is
    the menu you get when you right-click empty space in the arrange view.
-3. Click **Add… > Action…**, type `Cubase Toolbox` in the filter box, and add
-   the tools you want. You can also add only **Cubase Toolbox - Show tool
-   menu**, which opens a small toolbox at the mouse.
+3. Click **Add… > Action…**, type `Cubase Toolbox - Tool` in the filter box,
+   and add the tools you want.
+   *Shorter option:* add only **Cubase Toolbox - Show tool menu**. That adds
+   one entry which opens the full toolbox at the mouse.
 4. Drag the new entries to the top of the list so they sit first, like in
    Cubase. Tick **Include default menu as submenu** so REAPER's normal
    right-click commands stay available.
@@ -49,15 +61,57 @@ Selection** puts all of them back, even if you had customised them.
    editor, do the same for its menus, which have names starting with "MIDI".
 6. Click **Save**.
 
-The tool that's active has a tick next to it in the menu.
+### Way 2: floating toolbar at the mouse
 
-### Other ways to switch tools
+This is the closest match to Cubase's toolbox: a panel of tool buttons that
+pops up where your mouse is.
 
-- **Keyboard shortcuts.** In the Actions window, select a tool and click
-  **Add…** under Shortcuts. Cubase uses the number keys 1–9. REAPER already
-  uses some of those keys, so pick ones you don't use.
-- **Toolbar buttons.** Add the tool actions to a toolbar. The active tool's
-  button lights up.
+**Build the toolbar (once):**
+
+1. **Options > Customize menus/toolbars…**
+2. In the drop-down at the top-left choose **Floating toolbar 1**. Pick
+   another number if you already use toolbar 1.
+3. Click **Add… > Action…**, type `Cubase Toolbox - Tool` in the filter box,
+   and add all the tools.
+4. Give each button a label: select it, then use the icon/text options in the
+   window (for example **Text icon…**) to type a short name like `Select`,
+   `Range`, `Split`, `Glue`, `Erase`, `Zoom`, `Mute`, `Draw`, `Line`, `Play`,
+   `Hand`, `Drum` or `Warp`. You can choose picture icons instead if you prefer.
+5. Click **Save**.
+
+**Give it a shortcut:**
+
+1. Open the **Actions** window (press `?`).
+2. Search for `at mouse cursor` and find the action that opens your toolbar
+   there. It's something like *Toolbar: Open/close toolbar 1 at mouse
+   cursor*. Use the number you picked above.
+3. Select it and click **Add…** under Shortcuts, then press the key or mouse
+   button you want to use.
+
+Now press that shortcut to open the toolbox at the mouse, then click a tool.
+The toolbar **closes by itself** once you've picked a tool, like Cubase's
+toolbox. To close it without picking anything, press the shortcut again.
+
+The toolbox works out which floating toolbar(s) you put its buttons on, so it
+only ever closes those. If you'd rather keep the toolbar open (for example,
+if you dock it permanently), open the tool menu (**Cubase Toolbox - Show
+tool menu**) and untick **Close floating toolbar after picking a tool**.
+
+You can also add that "open toolbar at mouse cursor" action to the
+right-click menu (see Way 1). It takes one extra click, but you don't need a
+shortcut.
+
+### Extras
+
+- **Keyboard shortcut per tool.** In the Actions window, select any
+  `Cubase Toolbox - Tool …` action and click **Add…** under Shortcuts. Cubase
+  uses the number keys 1–9, but REAPER already uses some of them, so pick keys
+  you don't use.
+- **Always-visible buttons.** You can put your favourite tools on the main
+  toolbar or the **Empty TCP area toolbar** (the space under your track names).
+
+**After restarting REAPER** no tool is ticked or lit until you pick one. The
+tool you last used is still active, though.
 
 ## The tools
 
@@ -101,7 +155,8 @@ project, use *Project settings > Timebase*.
 
 ## If something isn't right
 
-- Right-click, open the toolbox, and choose **Troubleshooting report**. It
+- Run **Cubase Toolbox - Show tool menu** (from the right-click menu, or the
+  Actions window) and choose **Troubleshooting report**. It
   prints the toolbox's current state to REAPER's console window. If you ask
   for help, copy that text into your message.
 - If a tool can only partly switch on (for example, an older REAPER is

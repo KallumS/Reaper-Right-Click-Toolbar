@@ -530,6 +530,105 @@ function M.set_tool(id)
 end
 
 ---------------------------------------------------------------------------
+-- Closing the floating toolbar after a tool is picked (like Cubase)
+---------------------------------------------------------------------------
+function M.autoclose_enabled()
+  return get("autoclose") ~= "0"
+end
+
+function M.set_autoclose(on)
+  set("autoclose", on and "1" or "0")
+end
+
+-- Every tool action's ID, as it appears in reaper-menu.ini ("_RS...").
+local function tool_action_ids()
+  local ids = {}
+  for _, tool in ipairs(M.TOOLS) do
+    for _, section in ipairs({ M.SECTION_MAIN, M.SECTION_MIDI }) do
+      local named = get("cmd|" .. tool.id .. "|" .. section)
+      if named then ids[#ids + 1] = "_" .. named end
+    end
+  end
+  return ids
+end
+
+-- Finds the floating toolbars the user put our tool buttons on, by reading
+-- REAPER's toolbar settings file. Returns e.g. { {midi = false, n = 1} }.
+function M.find_tool_toolbars()
+  local found = {}
+  local ids = tool_action_ids()
+  if #ids == 0 then return found end
+  local f = io.open(r.GetResourcePath() .. "/reaper-menu.ini", "r")
+  if not f then return found end
+  local current, matched
+  for line in f:lines() do
+    local header = line:match("^%[(.-)%]")
+    if header then
+      local n = header:match("^Floating toolbar (%d+)$")
+      local midi_n = header:match("^Floating MIDI toolbar (%d+)$")
+      if n then
+        current = { midi = false, n = tonumber(n) }
+      elseif midi_n then
+        current = { midi = true, n = tonumber(midi_n) }
+      else
+        current = nil
+      end
+      matched = false
+    elseif current and not matched and line:match("^item_%d+=") then
+      for _, id in ipairs(ids) do
+        if line:find(id, 1, true) then
+          found[#found + 1] = current
+          matched = true
+          break
+        end
+      end
+    end
+  end
+  f:close()
+  return found
+end
+
+-- The on/off action for floating toolbar n (main window or MIDI editor).
+local function toolbar_toggle_action(section, n, midi)
+  return search_actions(section, function(name, cmd)
+    if not (name:find("toolbar", 1, true) and name:find("open/close", 1, true)) then
+      return false
+    end
+    if (name:find("midi", 1, true) ~= nil) ~= midi then return false end
+    if r.GetToggleCommandStateEx(section, cmd) < 0 then return false end
+    for word in name:gmatch("%w+") do
+      if word == tostring(n) then return true end
+    end
+    return false
+  end)
+end
+
+-- Closes any open floating toolbar that holds our tool buttons.
+function M.close_tool_toolbars()
+  for _, tb in ipairs(M.find_tool_toolbars()) do
+    local section = tb.midi and M.SECTION_MIDI or M.SECTION_MAIN
+    local cmd = toolbar_toggle_action(section, tb.n, tb.midi)
+    if cmd and r.GetToggleCommandStateEx(section, cmd) == 1 then
+      if section == M.SECTION_MIDI then
+        r.MIDIEditor_LastFocused_OnCommand(cmd, false)
+      else
+        r.Main_OnCommand(cmd, 0)
+      end
+    end
+  end
+end
+
+-- Called by the "Cubase Toolbox - Tool ..." actions.
+function M.run_tool_action(id, section, cmd)
+  M.remember_script(id, section, cmd)
+  M.set_tool(id)
+  if M.autoclose_enabled() then
+    -- wait until the button click has finished before closing its toolbar
+    r.defer(M.close_tool_toolbars)
+  end
+end
+
+---------------------------------------------------------------------------
 -- Public: the right-click toolbox menu
 ---------------------------------------------------------------------------
 local function show_menu_at_mouse(menu)
@@ -561,6 +660,8 @@ function M.show_menu()
   end
   items[#items + 1] = ""
   actions[#actions + 1] = false
+  items[#items + 1] = (M.autoclose_enabled() and "!" or "") .. "Close floating toolbar after picking a tool"
+  actions[#actions + 1] = "@autoclose"
   items[#items + 1] = "What does the current tool do?"
   actions[#actions + 1] = "@help"
   items[#items + 1] = "Troubleshooting report (prints to console)"
@@ -580,6 +681,9 @@ function M.show_menu()
   if picked == "@help" then
     local t = M.TOOLS_BY_ID[current]
     r.ShowMessageBox(t.label .. "\n\n" .. t.help, M.NAME, 0)
+    return M.no_undo()
+  elseif picked == "@autoclose" then
+    M.set_autoclose(not M.autoclose_enabled())
     return M.no_undo()
   elseif picked == "@diagnostics" then
     M.diagnostics()
@@ -642,6 +746,13 @@ function M.diagnostics()
     add(("Arrange override %s action: %s%s"):format(letter,
       cmd and (cmd .. " '" .. action_name(0, cmd) .. "'") or "NOT FOUND",
       cmd and (" (currently " .. (r.GetToggleCommandState(cmd) == 1 and "on" or "off") .. ")") or ""))
+  end
+  add("Close floating toolbar after picking a tool: " .. (M.autoclose_enabled() and "on" or "off"))
+  for _, tb in ipairs(M.find_tool_toolbars()) do
+    local section = tb.midi and M.SECTION_MIDI or M.SECTION_MAIN
+    local cmd = toolbar_toggle_action(section, tb.n, tb.midi)
+    add(("Tools found on %s toolbar %d, open/close action: %s"):format(tb.midi and "MIDI floating" or "floating",
+      tb.n, cmd and (cmd .. " '" .. action_name(section, cmd) .. "'") or "NOT FOUND"))
   end
   add(("Split item action: %s"):format(tostring(M.find_action(SPLIT_ITEM))))
   add(("Split notes action (MIDI editor): %s"):format(tostring(M.find_action(SPLIT_NOTES))))
