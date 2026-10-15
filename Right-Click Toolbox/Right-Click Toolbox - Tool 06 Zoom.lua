@@ -1,7 +1,7 @@
 -- @description Right-Click Toolbox - Zoom tool
 -- @about
 --   Switches the mouse to the Cubase-style "Zoom" tool.
---   Modes: Zoom To Dragged Selection, Zoom Horizontally, Zoom Vertically.
+--   Modes: Zoom to Dragged Selection, Zoom Horizontally, Zoom Vertically.
 --   Click this button again while the tool is active to pick a mode.
 --   Put this on a toolbar button, a menu or a keyboard shortcut; it lights
 --   up while the tool is active. If it's on a floating toolbar, that toolbar

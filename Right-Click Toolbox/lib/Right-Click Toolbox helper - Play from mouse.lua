@@ -1,6 +1,6 @@
 -- @description Right-Click Toolbox helper - Play from mouse
 -- @about
---   Plays from the mouse position, or stops if already playing (Play tool, Play From Click mode).
+--   Plays from the mouse position, or stops if already playing (Play tool, Play from Click mode).
 --   Used internally by the toolbox's mouse settings; you don't need to run it yourself.
 
 local _, file = reaper.get_action_context()

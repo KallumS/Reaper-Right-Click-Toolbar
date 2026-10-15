@@ -1,6 +1,6 @@
 -- @description Right-Click Toolbox - Play / Scrub tool, Play From Click mode
 -- @about
---   Switches the mouse to the Cubase-style "Play / Scrub" tool in "Play From Click" mode.
+--   Switches the mouse to the Cubase-style "Play / Scrub" tool in "Play from Click" mode.
 --   Click to play from that point, click again to stop. In the MIDI editor, drag to hear notes.
 --   Handy in a right-click submenu or on a toolbar; it lights up while active.
 

@@ -94,12 +94,13 @@ M.TOOLS = {
     slots = {},
     modes = {
       { id = "normal", label = "Normal",
-        help = "REAPER's normal behaviour, with all your own settings." },
+        help = "REAPER’s normal behaviour, with all your own settings." },
       { id = "stretch", label = "Sizing Applies Time Stretch",
         help = "Dragging an item edge time-stretches the audio.",
         slots = { { ctx = "MM_CTX_ITEMEDGE", mod = NONE, id = 2, name = "Stretch item" } } },
-      { id = "toggle", label = "Click Adds/Removes From Selection",
-        help = "Clicking an item adds it to the selection, or removes it if it's already selected.",
+      { id = "toggle", label = "Click Adds/Removes from Selection",
+        file = "Click Adds/Removes From Selection",
+        help = "Clicking an item adds it to the selection, or removes it if it’s already selected.",
         slots = { { ctx = "MM_CTX_ITEM_CLK", mod = NONE, id = 4, name = "Toggle item selection" } } },
       { id = "under", label = "Select Events Under Cursor",
         help = "Click anywhere to select every item at that position, on all tracks.",
@@ -114,7 +115,7 @@ M.TOOLS = {
   },
   {
     id = "range", label = "Range Selection", file = "02 Range Selection",
-    help = "Drag to select a time range across tracks (REAPER razor edit).",
+    help = "Drag to select a time range across tracks (REAPER’s razor edit).",
     override = "B",
     slots = {},
     fallback = {
@@ -131,7 +132,7 @@ M.TOOLS = {
       { ctx = "MM_CTX_MIDI_NOTE",     mod = NONE, id = 0, name = "No action" },
     }),
     modes = {
-      { id = "mouse", label = "Split At Mouse",
+      { id = "mouse", label = "Split at Mouse", file = "Split At Mouse",
         help = "Click an item (or MIDI note) to split it at the mouse.",
         slots = { { ctx = "MM_CTX_ITEM_CLK", mod = NONE, action = SPLIT_ITEM } } },
       { id = "selected", label = "Split All Selected Items",
@@ -176,10 +177,10 @@ M.TOOLS = {
       { ctx = "MM_CTX_TRACK", mod = NONE, id = 22, name = "Marquee zoom" },
     },
     modes = {
-      { id = "box", label = "Zoom To Dragged Selection",
+      { id = "box", label = "Zoom to Dragged Selection", file = "Zoom To Dragged Selection",
         help = "Drag a box to zoom into it. Click to zoom in, Alt+click to zoom out, centred on the mouse." },
       { id = "horizontal", label = "Zoom Horizontally",
-        help = "Drag left/right to zoom in and out horizontally. Click to zoom in, Alt+click to zoom out.",
+        help = "Drag left or right to zoom in and out horizontally. Click to zoom in, Alt+click to zoom out.",
         slots = { { ctx = "MM_CTX_ARRANGE_D", mod = NONE, id = 17, name = "Horizontal zoom" } } },
       { id = "vertical", label = "Zoom Vertically",
         help = "Click to make tracks taller, Alt+click to make them shorter. Drag a box to zoom into it.",
@@ -193,7 +194,7 @@ M.TOOLS = {
   },
   {
     id = "mute", label = "Mute", file = "07 Mute",
-    help = "Click items or MIDI notes to mute/unmute them.",
+    help = "Click items or MIDI notes to mute or unmute them.",
     slots = with(ITEM_NO_DRAG, {
       { ctx = "MM_CTX_ITEM_CLK",      mod = NONE, helper = "mute" },
       { ctx = "MM_CTX_MIDI_NOTE_CLK", mod = NONE, id = 7, name = "Toggle note mute" },
@@ -227,7 +228,7 @@ M.TOOLS = {
   },
   {
     id = "line", label = "Line", file = "09 Line",
-    help = "Draw ramps of MIDI CC/velocity, rows of notes, and automation points. The mode sets the curve shape.",
+    help = "Draw ramps of MIDI CC or velocity, rows of notes, and automation points. The mode sets the curve shape.",
     slots = {
       { ctx = "MM_CTX_ENVSEG",         mod = NONE, id = 2, name = "Insert envelope point, drag to move" },
       { ctx = "MM_CTX_MIDI_PIANOROLL", mod = NONE, id = 23, name = "Paint a straight line of notes" },
@@ -257,7 +258,7 @@ M.TOOLS = {
       { id = "jog", label = "Jog",
         help = "Drag to play forwards (or backwards) at your own speed. In the MIDI editor, drag to hear notes.",
         slots = { { ctx = "MM_CTX_ARRANGE_D", mod = NONE, id = 11, name = "Jog audio" } } },
-      { id = "click", label = "Play From Click",
+      { id = "click", label = "Play from Click", file = "Play From Click",
         help = "Click to play from that point, click again to stop. In the MIDI editor, drag to hear notes.",
         override = false,
         slots = with(ITEM_NO_DRAG, {
@@ -275,7 +276,7 @@ M.TOOLS = {
     },
   },
   {
-    id = "drumstick", label = "Drumstick (MIDI editor)", file = "12 Drumstick",
+    id = "drumstick", label = "Drumstick (MIDI Editor)", file = "12 Drumstick",
     help = "MIDI editor: click or drag to paint drum hits, click a hit to remove it.",
     slots = {
       { ctx = "MM_CTX_MIDI_PIANOROLL",     mod = NONE, id = 22, name = "Paint notes" },
@@ -299,8 +300,13 @@ function M.tool_file(tool)
   return "Right-Click Toolbox - Tool " .. tool.file .. ".lua"
 end
 
+-- A mode's file name is made from its label. Labels may change (menu words
+-- follow Apple's writing guidelines - docs/sessions/2026-10-14-apple-writing.md);
+-- file names may not, since they are REAPER action names that people have put
+-- on menus, toolbars and shortcuts, so a mode whose label changed keeps its
+-- old one in `file`.
 function M.mode_file(tool, mode)
-  local label = mode.label:gsub("/", "-"):gsub("[^%w%s%-]", ""):gsub("%s+", " ")
+  local label = (mode.file or mode.label):gsub("/", "-"):gsub("[^%w%s%-]", ""):gsub("%s+", " ")
   return "Modes/Right-Click Toolbox - Mode " .. tool.file .. " - " .. label .. ".lua"
 end
 
@@ -448,7 +454,9 @@ function M.helper_action(helper)
   end
   local path = M.lib_dir .. file
   if not r.file_exists(path) then
-    M.log("Missing helper script: " .. path)
+    M.log("A helper script is missing: " .. path .. "\n" ..
+          "Copy the whole Right-Click Toolbox folder into REAPER’s Scripts folder again, " ..
+          "then run “Right-Click Toolbox - Install (run once)”.")
     return nil
   end
   local cmd = r.AddRemoveReaScript(true, M.SECTION_MAIN, path, true)
@@ -532,12 +540,12 @@ local function config_list() return split(get("config_list"), ";") end
 
 local function apply_config(cfg, problems)
   if not (r.get_config_var_string and r.set_config_var_string) then
-    problems[#problems + 1] = "Changing the '" .. cfg.name .. "' preference needs a newer REAPER"
+    problems[#problems + 1] = "Changing the “" .. cfg.name .. "” preference needs a newer REAPER."
     return
   end
   local ok, current = r.get_config_var_string(cfg.name)
   if not ok then
-    problems[#problems + 1] = "REAPER has no '" .. cfg.name .. "' preference"
+    problems[#problems + 1] = "This REAPER has no “" .. cfg.name .. "” preference."
     return
   end
   local list, known = config_list(), false
@@ -577,7 +585,7 @@ end
 local function apply_slot(slot, problems)
   local list = candidates(slot)
   if #list == 0 then
-    problems[#problems + 1] = slot.ctx .. ": could not find the action to use"
+    problems[#problems + 1] = slot.ctx .. ": couldn’t find the action to use."
     return
   end
   backup(slot.ctx, slot.mod)
@@ -587,14 +595,14 @@ local function apply_slot(slot, problems)
   -- Nothing worked: put the original back straight away.
   local key = slot_key(slot.ctx, slot.mod)
   r.SetMouseModifier(slot.ctx, slot.mod, get("bk|" .. key) or "-1")
-  problems[#problems + 1] = slot.ctx .. ": REAPER did not accept " .. table.concat(list, " / ")
+  problems[#problems + 1] = slot.ctx .. ": REAPER didn’t accept " .. table.concat(list, " / ") .. "."
 end
 
 local function enable_override(letter, problems)
   local cmd = M.find_override_action(letter)
   if not cmd then
-    problems[#problems + 1] = "Could not find the 'arrange view override " .. letter ..
-      "' action (needs REAPER 7 or newer)"
+    problems[#problems + 1] = "Couldn’t find the “arrange view override " .. letter ..
+      "” action. It needs REAPER 7 or newer."
     return false
   end
   if r.GetToggleCommandState(cmd) ~= 1 then
@@ -668,7 +676,7 @@ function M.current_mode(tool_id)
 end
 
 local function full_label(tool, mode)
-  if #tool.modes > 1 then return tool.label .. " - " .. mode.label end
+  if #tool.modes > 1 then return tool.label .. " — " .. mode.label end
   return tool.label
 end
 
@@ -708,7 +716,7 @@ end
 function M.set_tool(id, mode_id)
   local tool = M.TOOLS_BY_ID[id]
   if not tool then
-    M.log("Unknown tool: " .. tostring(id))
+    M.log("There’s no tool called “" .. tostring(id) .. "”.")
     return
   end
   local mode = tool.modes_by_id[mode_id or M.current_mode(id)] or tool.modes[1]
@@ -730,9 +738,9 @@ function M.set_tool(id, mode_id)
   M.refresh_toggle_states()
 
   if #problems > 0 then
-    M.log("Tool '" .. full_label(tool, mode) .. "' is only partly active:\n  - " ..
+    M.log("“" .. full_label(tool, mode) .. "” is only partly on:\n  - " ..
           table.concat(problems, "\n  - ") ..
-          "\nEverything else about this tool is working.")
+          "\nEverything else about this tool works.")
   end
   show_tooltip("Tool: " .. full_label(tool, mode))
 end
@@ -891,7 +899,7 @@ end
 function M.show_mode_menu(id)
   local tool = M.TOOLS_BY_ID[id]
   local current = M.current_mode(id)
-  local items = { "#" .. menu_escape(tool.label) .. " modes", "" }
+  local items = { "#" .. menu_escape(tool.label) .. " Modes", "" }
   local actions = { false, false }
   for _, mode in ipairs(tool.modes) do
     items[#items + 1] = (mode.id == current and "!" or "") .. menu_escape(mode.label)
@@ -908,7 +916,7 @@ function M.show_menu()
     local active = tool.id == current
     if #tool.modes > 1 then
       -- tool with modes: a submenu listing them
-      items[#items + 1] = ">" .. menu_escape(tool.label) .. (active and "  (active)" or "")
+      items[#items + 1] = ">" .. menu_escape(tool.label) .. (active and " (Active)" or "")
       actions[#actions + 1] = false
       local current_mode = M.current_mode(tool.id)
       for i, mode in ipairs(tool.modes) do
@@ -923,11 +931,11 @@ function M.show_menu()
   end
   items[#items + 1] = ""
   actions[#actions + 1] = false
-  items[#items + 1] = (M.autoclose_enabled() and "!" or "") .. "Close floating toolbar after picking a tool"
+  items[#items + 1] = (M.autoclose_enabled() and "!" or "") .. "Close Floating Toolbar After Picking a Tool"
   actions[#actions + 1] = "@autoclose"
-  items[#items + 1] = "What does the current tool do?"
+  items[#items + 1] = "About the Current Tool"
   actions[#actions + 1] = "@help"
-  items[#items + 1] = "Troubleshooting report (prints to console)"
+  items[#items + 1] = "Print Troubleshooting Report to Console"
   actions[#actions + 1] = "@diagnostics"
 
   local choice = show_menu_at_mouse(table.concat(items, "|"))
@@ -1030,7 +1038,7 @@ function M.diagnostics()
   end
   add("Settings currently changed by the toolbox (context | modifier = your original):")
   local list = backup_list()
-  if #list == 0 then add("  (none - REAPER is using your normal settings)") end
+  if #list == 0 then add("  (none — REAPER is using your normal settings)") end
   for _, key in ipairs(list) do
     local ctx, mod = key:match("^(.*)|(%-?%d+)$")
     add(("  %s = %s, now %s"):format(key, tostring(get("bk|" .. key)),
@@ -1081,7 +1089,7 @@ end
 function M.erase_item_under_mouse()
   local item = M.item_under_mouse()
   if not item then return M.no_undo() end
-  edit("Erase item", function()
+  edit("Erase Item", function()
     r.DeleteTrackMediaItem(r.GetMediaItem_Track(item), item)
   end)
 end
@@ -1092,7 +1100,7 @@ function M.mute_item_under_mouse()
   local item = M.item_under_mouse()
   if not item then return M.no_undo() end
   local new_state = r.GetMediaItemInfo_Value(item, "B_MUTE") == 1 and 0 or 1
-  edit(new_state == 1 and "Mute item" or "Unmute item", function()
+  edit(new_state == 1 and "Mute Item" or "Unmute Item", function()
     if r.IsMediaItemSelected(item) then
       for i = 0, r.CountSelectedMediaItems(0) - 1 do
         r.SetMediaItemInfo_Value(r.GetSelectedMediaItem(0, i), "B_MUTE", new_state)
@@ -1128,7 +1136,7 @@ function M.glue_item_under_mouse()
     end
   end
   if not next_item then
-    return show_tooltip("Glue: there is no item to the right of this one")
+    return show_tooltip("There’s no item to the right of this one to glue to.")
   end
 
   edit("Glue", function()
@@ -1158,7 +1166,7 @@ end
 function M.select_at_mouse()
   local t = M.mouse_time(false)
   if not t then return M.no_undo() end
-  edit("Select items under cursor", function()
+  edit("Select Items Under Cursor", function()
     for i = 0, r.CountMediaItems(0) - 1 do
       local item = r.GetMediaItem(0, i)
       local s, e = item_bounds(item)
@@ -1193,7 +1201,7 @@ function M.select_behind()
   else
     pick = stack[(top or 0) % #stack + 1]         -- the one behind the visible item
   end
-  edit("Select item behind", function()
+  edit("Select Item Behind", function()
     r.SelectAllMediaItems(0, false)
     r.SetMediaItemSelected(pick, true)
   end)
@@ -1210,7 +1218,7 @@ function M.split_selected_at_mouse()
     local it = r.GetSelectedMediaItem(0, i)
     if it ~= clicked then targets[#targets + 1] = it end
   end
-  edit("Split selected items", function()
+  edit("Split Selected Items", function()
     for _, it in ipairs(targets) do
       local s, e = item_bounds(it)
       if s < t and t < e then r.SplitMediaItem(it, t) end
@@ -1227,7 +1235,7 @@ function M.split_repeat_at_mouse()
   local s, e = item_bounds(item)
   local piece = t - s
   if piece < 0.001 then return M.no_undo() end
-  edit("Split into repeated pieces", function()
+  edit("Split into Repeated Pieces", function()
     local current, pos = item, t
     while current and pos < e - 0.0001 do
       current = r.SplitMediaItem(current, pos)
@@ -1275,7 +1283,7 @@ function M.tempo_marker_at_mouse()
     bpm = prev_bpm
   end
 
-  edit("Insert tempo marker", function()
+  edit("Insert Tempo Marker", function()
     r.SetTempoTimeSigMarker(0, -1, t, -1, -1, bpm, 0, 0, false)
   end)
   r.UpdateTimeline()

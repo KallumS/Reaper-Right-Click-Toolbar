@@ -1,7 +1,7 @@
 -- @description Right-Click Toolbox - Split (Scissors) tool
 -- @about
 --   Switches the mouse to the Cubase-style "Split (Scissors)" tool.
---   Modes: Split At Mouse, Split All Selected Items.
+--   Modes: Split at Mouse, Split All Selected Items.
 --   Click this button again while the tool is active to pick a mode.
 --   Put this on a toolbar button, a menu or a keyboard shortcut; it lights
 --   up while the tool is active. If it's on a floating toolbar, that toolbar

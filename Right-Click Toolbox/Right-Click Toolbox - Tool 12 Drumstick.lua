@@ -1,6 +1,6 @@
 -- @description Right-Click Toolbox - Drumstick (MIDI editor) tool
 -- @about
---   Switches the mouse to the Cubase-style "Drumstick (MIDI editor)" tool.
+--   Switches the mouse to the Cubase-style "Drumstick (MIDI Editor)" tool.
 --   Put this on a toolbar button, a menu or a keyboard shortcut; it lights
 --   up while the tool is active. If it's on a floating toolbar, that toolbar
 --   closes once you've picked the tool (switch this off in the tool menu).
