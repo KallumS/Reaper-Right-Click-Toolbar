@@ -1,6 +1,6 @@
 -- @description Right-Click Toolbox - Zoom tool, Zoom To Dragged Selection mode
 -- @about
---   Switches the mouse to the Cubase-style "Zoom" tool in "Zoom To Dragged Selection" mode.
+--   Switches the mouse to the Cubase-style "Zoom" tool in "Zoom to Dragged Selection" mode.
 --   Drag a box to zoom into it. Click to zoom in, Alt+click to zoom out, centred on the mouse.
 --   Handy in a right-click submenu or on a toolbar; it lights up while active.
 

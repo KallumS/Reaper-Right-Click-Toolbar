@@ -102,7 +102,7 @@ toolbox. To close it without picking anything, press the shortcut again.
 The toolbox works out which floating toolbar(s) you put its buttons on, so it
 only ever closes those. If you'd rather keep the toolbar open (for example,
 if you dock it permanently), open the tool menu (**Right-Click Toolbox - Show
-tool menu**) and untick **Close floating toolbar after picking a tool**.
+tool menu**) and untick **Close Floating Toolbar After Picking a Tool**.
 
 You can also add that "open toolbar at mouse cursor" action to the
 right-click menu (see Way 1). It takes one extra click, but you don't need a
@@ -164,12 +164,12 @@ used last, so picking the tool again gives you that mode.
 
 | Tool | Modes |
 |---|---|
-| **Object Selection** | **Normal**: REAPER's usual behaviour.<br>**Sizing Applies Time Stretch**: dragging an item edge time-stretches it.<br>**Click Adds/Removes From Selection**: clicking an item adds it to, or removes it from, the selection.<br>**Select Events Under Cursor**: click anywhere to select every item at that point, on all tracks.<br>**Select Objects Behind**: click overlapping items to select the one underneath; click again to go one further down. |
-| **Split (Scissors)** | **Split At Mouse**: split the clicked item.<br>**Split All Selected Items**: split the clicked item and every selected item at that point.<br>In both modes, **Alt+click** cuts the item into repeated pieces. |
-| **Zoom** | **Zoom To Dragged Selection**: drag a box to zoom into it.<br>**Zoom Horizontally**: drag left/right to zoom in and out.<br>**Zoom Vertically**: click to make tracks taller, Alt+click to make them shorter. |
+| **Object Selection** | **Normal**: REAPER's usual behaviour.<br>**Sizing Applies Time Stretch**: dragging an item edge time-stretches it.<br>**Click Adds/Removes from Selection**: clicking an item adds it to, or removes it from, the selection.<br>**Select Events Under Cursor**: click anywhere to select every item at that point, on all tracks.<br>**Select Objects Behind**: click overlapping items to select the one underneath; click again to go one further down. |
+| **Split (Scissors)** | **Split at Mouse**: split the clicked item.<br>**Split All Selected Items**: split the clicked item and every selected item at that point.<br>In both modes, **Alt+click** cuts the item into repeated pieces. |
+| **Zoom** | **Zoom to Dragged Selection**: drag a box to zoom into it.<br>**Zoom Horizontally**: drag left/right to zoom in and out.<br>**Zoom Vertically**: click to make tracks taller, Alt+click to make them shorter. |
 | **Draw (Pencil)** | **Free Draw**: draw automation and MIDI CC freehand.<br>**Line**: draw straight lines of MIDI CC; on automation, click to add points joined by straight lines. |
 | **Line** | Picks the shape of new ramps in MIDI CC lanes and automation: **Linear**, **Curve** (bezier, which you can bend afterwards), **S-Curve** (slow start and end, like a sine), **Exponential** (fast start), **Logarithmic** (fast end) and **Steps** (square). |
-| **Play / Scrub** | **Scrub**: drag to scrub audio like tape.<br>**Jog**: drag to play forwards or backwards at your own speed.<br>**Play From Click**: click to play from that point, click again to stop.<br>In every mode, dragging in the MIDI editor plays the notes. |
+| **Play / Scrub** | **Scrub**: drag to scrub audio like tape.<br>**Jog**: drag to play forwards or backwards at your own speed.<br>**Play from Click**: click to play from that point, click again to stop.<br>In every mode, dragging in the MIDI editor plays the notes. |
 
 **About the Line shapes:** each shape changes two REAPER preferences while
 the mode is active: *Preferences > MIDI editor > default shape for CC
@@ -189,14 +189,14 @@ shape*. Your own settings are put back when you pick another tool.
   parabola, sine, triangle, square and saw *patterns* aren't available. The
   Line tool's modes change the curve between points instead.
 - **The Play tool can't play only while the mouse button is held.** Use
-  **Play From Click**: click to play, click again to stop. Hovering over MIDI
+  **Play from Click**: click to play, click again to stop. Hovering over MIDI
   notes doesn't play them. Drag over them instead.
 - **Switching tools isn't an undo step.** Undo only affects your edits.
 
 ## If something isn't right
 
 - Run **Right-Click Toolbox - Show tool menu** (from the right-click menu, or the
-  Actions window) and choose **Troubleshooting report**. It
+  Actions window) and choose **Print Troubleshooting Report to Console**. It
   prints the toolbox's current state to REAPER's console window. If you ask
   for help, copy that text into your message.
 - If a tool can only partly switch on (for example, an older REAPER is

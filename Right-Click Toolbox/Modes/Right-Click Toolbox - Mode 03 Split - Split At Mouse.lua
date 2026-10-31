@@ -1,6 +1,6 @@
 -- @description Right-Click Toolbox - Split (Scissors) tool, Split At Mouse mode
 -- @about
---   Switches the mouse to the Cubase-style "Split (Scissors)" tool in "Split At Mouse" mode.
+--   Switches the mouse to the Cubase-style "Split (Scissors)" tool in "Split at Mouse" mode.
 --   Click an item (or MIDI note) to split it at the mouse.
 --   Handy in a right-click submenu or on a toolbar; it lights up while active.
 

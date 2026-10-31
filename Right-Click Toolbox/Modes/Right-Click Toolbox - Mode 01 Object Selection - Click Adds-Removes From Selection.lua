@@ -1,6 +1,6 @@
 -- @description Right-Click Toolbox - Object Selection tool, Click Adds/Removes From Selection mode
 -- @about
---   Switches the mouse to the Cubase-style "Object Selection" tool in "Click Adds/Removes From Selection" mode.
+--   Switches the mouse to the Cubase-style "Object Selection" tool in "Click Adds/Removes from Selection" mode.
 --   Clicking an item adds it to the selection, or removes it if it's already selected.
 --   Handy in a right-click submenu or on a toolbar; it lights up while active.
 

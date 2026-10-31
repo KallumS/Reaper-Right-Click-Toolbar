@@ -1,7 +1,7 @@
 -- @description Right-Click Toolbox - Play / Scrub tool
 -- @about
 --   Switches the mouse to the Cubase-style "Play / Scrub" tool.
---   Modes: Scrub, Jog, Play From Click.
+--   Modes: Scrub, Jog, Play from Click.
 --   Click this button again while the tool is active to pick a mode.
 --   Put this on a toolbar button, a menu or a keyboard shortcut; it lights
 --   up while the tool is active. If it's on a floating toolbar, that toolbar
