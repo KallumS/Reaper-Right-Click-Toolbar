@@ -26,6 +26,14 @@ Selection** puts all of them back, even if you had customised them.
 
 ## Installing
 
+**With ReaPack** (easiest, and it keeps it up to date): Extensions ->
+ReaPack -> Import repositories, paste
+`https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/main/index.xml`,
+then Browse packages, find Right-Click Toolbox and Install. Then run **Right-Click Toolbox - Install (run once)** from the Actions window, as in step 4 below. That link only works
+once this has been merged into the main branch.
+
+**By hand:**
+
 1. In REAPER choose **Options > Show REAPER resource path in explorer/finder**.
 2. Open the **Scripts** folder there and copy the whole **`Right-Click Toolbox`**
    folder into it.

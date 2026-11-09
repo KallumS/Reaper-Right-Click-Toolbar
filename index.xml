@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ReaPack index for Right-Click Toolbox.
+
+  Add this repository in REAPER with Extensions > ReaPack > Import repositories,
+  pasting the raw URL of this file on the default branch:
+
+    https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/main/index.xml
+
+  That URL only resolves once this file is on the default branch.
+
+  Each <source> is pinned to a commit rather than a branch, so an installed
+  version is the exact set of files that was tested and cannot change
+  underneath anyone. Publishing a new version means adding a <version> block
+  with a fresh commit hash - never editing an existing one.
+
+  One package. The scripts load lib/RightClickToolbox_core.lua from beside
+  themselves, so the folder layout is kept. Only the installer is added to the
+  action list by ReaPack: running it once adds every tool, for the main window
+  and the MIDI editor.
+
+  ReaPack keys an installed package by its NAME, so renaming a file is not an
+  upgrade. Rename sparingly.
+-->
+<index version="1" name="Right-Click Toolbox">
+  <category name="Editing">
+
+    <reapack name="Right-Click Toolbox - Install (run once).lua" type="script" desc="Right-Click Toolbox">
+      <version name="1.0" author="kallums" time="2026-10-31T23:19:43Z">
+        <changelog><![CDATA[First release through ReaPack. A Cubase-style toolbox: right-click, or press a shortcut, and pick a tool - Draw, Eraser, Split, Glue, Mute, Zoom and more. The left mouse button then works like that tool until you pick another; Object Selection puts every setting back. After installing, run Right-Click Toolbox - Install (run once) from the action list.]]></changelog>
+        <source main="main" file="Right-Click Toolbox - Install (run once).lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Install%20%28run%20once%29.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 01 Object Selection - Click Adds-Removes From Selection.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2001%20Object%20Selection%20-%20Click%20Adds-Removes%20From%20Selection.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 01 Object Selection - Normal.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2001%20Object%20Selection%20-%20Normal.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 01 Object Selection - Select Events Under Cursor.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2001%20Object%20Selection%20-%20Select%20Events%20Under%20Cursor.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 01 Object Selection - Select Objects Behind.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2001%20Object%20Selection%20-%20Select%20Objects%20Behind.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 01 Object Selection - Sizing Applies Time Stretch.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2001%20Object%20Selection%20-%20Sizing%20Applies%20Time%20Stretch.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 03 Split - Split All Selected Items.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2003%20Split%20-%20Split%20All%20Selected%20Items.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 03 Split - Split At Mouse.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2003%20Split%20-%20Split%20At%20Mouse.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 06 Zoom - Zoom Horizontally.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2006%20Zoom%20-%20Zoom%20Horizontally.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 06 Zoom - Zoom To Dragged Selection.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2006%20Zoom%20-%20Zoom%20To%20Dragged%20Selection.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 06 Zoom - Zoom Vertically.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2006%20Zoom%20-%20Zoom%20Vertically.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 08 Draw - Free Draw.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2008%20Draw%20-%20Free%20Draw.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 08 Draw - Line.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2008%20Draw%20-%20Line.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 09 Line - Curve.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2009%20Line%20-%20Curve.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 09 Line - Exponential Fast Start.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2009%20Line%20-%20Exponential%20Fast%20Start.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 09 Line - Linear.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2009%20Line%20-%20Linear.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 09 Line - Logarithmic Fast End.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2009%20Line%20-%20Logarithmic%20Fast%20End.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 09 Line - S-Curve Slow Start-End.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2009%20Line%20-%20S-Curve%20Slow%20Start-End.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 09 Line - Steps Square.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2009%20Line%20-%20Steps%20Square.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 10 Play Scrub - Jog.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2010%20Play%20Scrub%20-%20Jog.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 10 Play Scrub - Play From Click.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2010%20Play%20Scrub%20-%20Play%20From%20Click.lua</source>
+        <source file="Modes/Right-Click Toolbox - Mode 10 Play Scrub - Scrub.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Modes/Right-Click%20Toolbox%20-%20Mode%2010%20Play%20Scrub%20-%20Scrub.lua</source>
+        <source file="Right-Click Toolbox - Show tool menu.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Show%20tool%20menu.lua</source>
+        <source file="Right-Click Toolbox - Tool 01 Object Selection.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2001%20Object%20Selection.lua</source>
+        <source file="Right-Click Toolbox - Tool 02 Range Selection.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2002%20Range%20Selection.lua</source>
+        <source file="Right-Click Toolbox - Tool 03 Split.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2003%20Split.lua</source>
+        <source file="Right-Click Toolbox - Tool 04 Glue.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2004%20Glue.lua</source>
+        <source file="Right-Click Toolbox - Tool 05 Eraser.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2005%20Eraser.lua</source>
+        <source file="Right-Click Toolbox - Tool 06 Zoom.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2006%20Zoom.lua</source>
+        <source file="Right-Click Toolbox - Tool 07 Mute.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2007%20Mute.lua</source>
+        <source file="Right-Click Toolbox - Tool 08 Draw.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2008%20Draw.lua</source>
+        <source file="Right-Click Toolbox - Tool 09 Line.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2009%20Line.lua</source>
+        <source file="Right-Click Toolbox - Tool 10 Play Scrub.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2010%20Play%20Scrub.lua</source>
+        <source file="Right-Click Toolbox - Tool 11 Hand.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2011%20Hand.lua</source>
+        <source file="Right-Click Toolbox - Tool 12 Drumstick.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2012%20Drumstick.lua</source>
+        <source file="Right-Click Toolbox - Tool 13 Time Warp.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/Right-Click%20Toolbox%20-%20Tool%2013%20Time%20Warp.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Erase item under mouse.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Erase%20item%20under%20mouse.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Glue item under mouse to next.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Glue%20item%20under%20mouse%20to%20next.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Insert tempo marker at mouse.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Insert%20tempo%20marker%20at%20mouse.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Mute item under mouse.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Mute%20item%20under%20mouse.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Play from mouse.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Play%20from%20mouse.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Select item behind.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Select%20item%20behind.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Select items under mouse on all tracks.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Select%20items%20under%20mouse%20on%20all%20tracks.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Split item into repeated pieces.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Split%20item%20into%20repeated%20pieces.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Split selected items at mouse.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Split%20selected%20items%20at%20mouse.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Zoom in at mouse.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Zoom%20in%20at%20mouse.lua</source>
+        <source file="lib/Right-Click Toolbox helper - Zoom out at mouse.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/Right-Click%20Toolbox%20helper%20-%20Zoom%20out%20at%20mouse.lua</source>
+        <source file="lib/RightClickToolbox_core.lua">https://raw.githubusercontent.com/KallumS/Reaper-Right-Click-Toolbar/d2421b029592ec9066c2c0994a770cc56af1d7fb/Right-Click%20Toolbox/lib/RightClickToolbox_core.lua</source>
+      </version>
+      <metadata>
+        <description><![CDATA[{\pard Right-Click Toolbox\par
+Gives REAPER a Cubase-style toolbox. Right-click, or press a shortcut to open a toolbar at the mouse, and pick a tool such as Draw, Eraser, Split, Glue, Mute or Zoom. Your left mouse button then works like that tool until you pick another.\par
+After installing, run Right-Click Toolbox - Install (run once) from the action list. It adds every tool for the main window and the MIDI editor. Your own mouse settings are saved first; Object Selection puts them all back.\par
+}]]></description>
+        <link rel="website">https://github.com/KallumS/Reaper-Right-Click-Toolbar</link>
+      </metadata>
+    </reapack>
+
+  </category>
+</index>
