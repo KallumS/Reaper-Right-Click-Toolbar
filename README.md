@@ -24,6 +24,8 @@ automation and the MIDI editor. For example:
 Before any setting is changed, your own setting is saved. Choosing **Object
 Selection** puts all of them back, even if you had customised them.
 
+**In Ableton Live:** `ableton/` has Right-Click Toolbox as a Max for Live MIDI effect. See [`ableton/README.md`](ableton/README.md).
+
 ## Installing
 
 **With ReaPack** (easiest, and it keeps it up to date): Extensions ->

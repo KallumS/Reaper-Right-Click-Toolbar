@@ -1,0 +1,11 @@
+{
+  "name": "Right-Click Toolbox",
+  "slug": "RightClickToolbox",
+  "kind": "midi",
+  "template": "midi_effect",
+  "width": 520,
+  "description": "The Cubase-style toolbox, each tool doing the nearest thing Live lets a device do.",
+  "device": {},
+  "files": {},
+  "scripts": ["kit/ui.js", "kit/live.js", "toolbox.js"]
+}
