@@ -34,7 +34,7 @@ A toolbox has no settings to keep.
 ableton/device.json` writes the `.amxd`, the `.maxpat` and the script bundle
 `RightClickToolbox.js`. The bundle is the shared panel (`ableton/kit/ui.js`, `live.js`) and `ableton/toolbox.js`. No REAPER script runs here: the scripts change REAPER's mouse modifiers, which Live does not have. See `ableton/kit/VENDORED.md`.
 
-`node --test ableton/tests/test_device.js` runs the device on a pretend Max and Live: the thirteen tools in order, Draw Mode on and off, Mute and Eraser on the open clip, Glue and Drumstick, a tool with no clip saying what to do, and Split answered with ⌘E.
+`node --test ableton/tests/test_device.js` runs the device on a pretend Max and Live: the thirteen tools in order, Draw Mode on and off, Mute and Eraser on the open clip, Glue and Drumstick, a tool with no clip saying what to do, and Split answered with ⌘E. `node ableton/window.js` redraws the picture above from the device's own drawing code (it needs Playwright's Chromium).
 
 ## Limits
 

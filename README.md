@@ -26,6 +26,8 @@ Selection** puts all of them back, even if you had customised them.
 
 **In Ableton Live:** `ableton/` has Right-Click Toolbox as a Max for Live MIDI effect. See [`ableton/README.md`](ableton/README.md).
 
+![Right-Click Toolbox in Ableton Live](ableton/window.png)
+
 ## Installing
 
 **With ReaPack** (easiest, and it keeps it up to date): Extensions ->
