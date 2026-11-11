@@ -7,5 +7,5 @@
   "description": "The Cubase-style toolbox, each tool doing the nearest thing Live lets a device do.",
   "device": {},
   "files": {},
-  "scripts": ["kit/ui.js", "kit/live.js", "toolbox.js"]
+  "scripts": ["kit/palette.js", "kit/ui.js", "kit/live.js", "toolbox.js"]
 }

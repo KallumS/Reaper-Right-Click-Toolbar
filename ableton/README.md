@@ -2,6 +2,8 @@
 
 A Max for Live MIDI effect. Live keeps its mouse to itself - no device can change what a click in the Arrangement does - so this keeps the toolbox, not the trick: the same thirteen tools in the same order, each doing the nearest thing Live lets a device do.
 
+**Its colours are Live's**, after Ableton Live 8's default theme: neutral greys and one amber for what is on, so it sits beside Live's own devices. The REAPER version keeps the house scheme's yellow.
+
 ## Installing
 
 Needs **Live 12.1 or later with Max for Live** (Live Suite, or Standard with
